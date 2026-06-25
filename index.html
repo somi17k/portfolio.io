@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somil Kathuria, Cybersecurity Fresher | Online Portfolio</title>
+<meta name="description" content="I'm a cybersecurity Fresher with experience in identity and access management, security operations, and privacy engineering.">
+<style>
+  :root{
+    --bg: #0d1117;
+    --content: #3fb950;
+    --label: #58a6ff;
+    --muted: #8b949e;
+    --red: #f85149;
+    --border: #21262d;
+    --mono: "SF Mono", "Cascadia Code", "Fira Code", Consolas, "Courier New", monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--content);font-family:var(--mono);}
+  body{min-height:100vh;padding:40px 24px 80px;font-size:14px;line-height:1.65;}
+  .wrap{max-width:800px;margin:0 auto;}
+  .line{margin:0;white-space:pre-wrap;word-break:break-word;}
+  .prompt-user{color:var(--label);font-weight:600;}
+  .sep{color:var(--content);}
+  .cmd{color:var(--label);text-decoration:none;cursor:pointer;background:none;border:none;font:inherit;padding:0;font-weight:600;}
+  .cmd:hover{text-decoration:underline;}
+  .muted{color:var(--muted);}
+  .errlabel{color:var(--red);font-weight:700;}
+  .err{color:var(--red);}
+  .section{margin-top:18px;}
+  .ascii{color:var(--label);font-weight:700;letter-spacing:1px;line-height:1.15;margin:14px 0 14px;font-size:13px;}
+  .comment{color:var(--muted);margin:4px 0 20px;font-size:13px;}
+  .comment .cmd{font-weight:600;}
+  .help-grid{display:grid;grid-template-columns:repeat(2, minmax(220px,1fr));gap:8px 40px;margin:14px 0 4px;}
+  .help-row{display:flex;gap:14px;}
+  .help-row .cmd{min-width:96px;display:inline-block;}
+  .help-row .desc{color:var(--content);}
+  .kv{display:flex;gap:10px;margin:2px 0;}
+  .kv .k{color:var(--label);min-width:84px;}
+  .kv .v{color:var(--content);}
+  .entry{margin:14px 0 22px;}
+  .entry-title{color:var(--label);font-weight:600;}
+  .entry-title a{color:var(--label);text-decoration:underline;}
+  .entry-role{color:var(--label);font-weight:600;}
+  .entry-at{color:var(--content);}
+  .entry-company{color:var(--label);font-weight:600;}
+  .entry-sub{color:var(--muted);font-style:italic;margin:2px 0 8px;font-size:12.5px;}
+  ul.bullets{margin:6px 0 0;padding-left:20px;color:var(--content);}
+  ul.bullets li{margin-bottom:6px;}
+  .skill-row{display:flex;gap:10px;margin:4px 0;align-items:flex-start;}
+  .skill-label{color:var(--label);min-width:170px;text-align:right;flex-shrink:0;}
+  .skill-val{color:var(--content);}
+  .cert{margin:10px 0;}
+  .cert-name{color:var(--content);font-weight:700;}
+  .cert-check{color:var(--content);}
+  .cert-issuer{color:var(--muted);font-size:12.5px;margin-left:20px;}
+  .social-row{display:flex;gap:10px;margin:3px 0;}
+  .social-label{color:var(--label);min-width:70px;}
+  .social-dash{color:var(--muted);}
+  .social-url{color:var(--content);}
+  .pub-title{color:var(--label);text-decoration:underline;}
+  .pub-date{color:var(--muted);font-size:12.5px;margin-top:4px;}
+  .pub-venue{color:var(--muted);font-size:12.5px;margin-bottom:8px;}
+  .pub-abstract{color:var(--content);}
+  .neofetch-wrap{display:flex;gap:30px;flex-wrap:wrap;margin-top:10px;}
+  .neofetch-art{color:var(--label);font-size:9px;line-height:1.0;white-space:pre;}
+  .neofetch-info .nf-header{color:var(--label);font-weight:700;border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:6px;}
+  .nf-row{display:flex;gap:8px;}
+  .nf-row .nf-k{color:var(--label);min-width:80px;}
+  .nf-row .nf-v{color:var(--content);}
+  .ls-row{display:flex;gap:14px;}
+  .ls-type{color:var(--label);}
+  .ls-meta{color:var(--muted);}
+  .rule{border:none;border-top:1px solid var(--border);margin:28px 0 14px;}
+  .hint{color:var(--muted);font-size:12px;display:flex;gap:18px;flex-wrap:wrap;}
+  .input-row{display:flex;align-items:center;gap:8px;margin-top:4px;}
+  .input-row input{background:transparent;border:none;outline:none;color:var(--content);font-family:var(--mono);font-size:14px;flex:1;caret-color:var(--content);}
+  a{color:var(--label);}
+  #matrix-overlay{position:fixed;inset:0;background:#000;z-index:999;display:none;}
+  #matrix-overlay canvas{width:100%;height:100%;}
+  #matrix-overlay .close{position:absolute;top:16px;right:20px;color:var(--content);font-family:var(--mono);cursor:pointer;z-index:1000;}
+  @media (max-width:600px){
+    .help-grid{grid-template-columns:1fr;}
+    .skill-row{flex-direction:column;gap:2px;}
+    .skill-label{text-align:left;min-width:0;}
+    body{font-size:13px;padding:24px 16px 60px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="terminal">
+
+  <p class="line"><span class="prompt-user">somilkathuria@Cyber</span><span class="sep">:~$</span> <span class="cmd" data-cmd="welcome">welcome</span></p>
+
+  <pre class="ascii">  ____    ___   __  __   ___   _
+ / ___|  / _ \ |  \/  | |_ _| | |
+ \___ \ | | | || |\/| |  | |  | |
+  ___) || |_| || |  | |  | |  | |___
+ |____/  \___/ |_|  |_| |___| |_____|</pre>
+
+  <p class="line muted">Last login: <span id="lastlogin"></span></p>
+  <p class="line"><em><u>Welcome back. Type 'help' to see available commands.</u></em></p>
+
+  <p class="comment"># New here? Try <span class="cmd" data-cmd="guide">guide</span> for a quick tour, or jump to <span class="cmd" data-cmd="whoami">whoami</span> / <span class="cmd" data-cmd="experience">experience</span> / <span class="cmd" data-cmd="skills">skills</span> / <span class="cmd" data-cmd="projects">projects</span></p>
+
+  <div class="section">
+    <p class="line"><span class="prompt-user">somilkathuria@Cyber</span><span class="sep">:~$</span> <span class="cmd" data-cmd="help">help</span></p>
+    <div class="help-grid">
+      <div class="help-row"><span class="cmd" data-cmd="help">help</span><span class="desc">check available commands</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="welcome">welcome</span><span class="desc">display startup banner</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="guide">guide</span><span class="desc">quick tour for first-time visitors</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="whoami">whoami</span><span class="desc">about current user</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="experience">experience</span><span class="desc">view work experience</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="education">education</span><span class="desc">my education background</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="skills">skills</span><span class="desc">view technical skills</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="projects">projects</span><span class="desc">view projects that I've built</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="certifications">certifications</span><span class="desc">view certifications &amp; licenses</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="publications">publications</span><span class="desc">view publications &amp; writing</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="socials">socials</span><span class="desc">check out my social accounts</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="contact">contact</span><span class="desc">how to get in touch / hire me</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="resume">resume</span><span class="desc">how to get my full resume</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="ls">ls</span><span class="desc">list sections as files/folders</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="neofetch">neofetch</span><span class="desc">show system and user info</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="cowsay">cowsay</span><span class="desc">make a cow say something</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="matrix">matrix</span><span class="desc">enter the matrix</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="pwd">pwd</span><span class="desc">print current working directory</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="echo">echo</span><span class="desc">print out anything</span></div>
+      <div class="help-row"><span class="cmd" data-cmd="clear">clear</span><span class="desc">clear the terminal</span></div>
+    </div>
+  </div>
+
+  <div id="output"></div>
+
+  <div class="section input-row">
+    <span class="prompt-user">somilkathuria@Cyber</span><span class="sep">:~$</span>
+    <input id="cmdline" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type a command... or (try 'guide' / 'help' commands)">
+  </div>
+
+  <hr class="rule">
+  <div class="hint">
+    <span>[TAB] Autocomplete</span>
+    <span>[UP ARROW] History</span>
+    <span>[CTRL+L] Clear Screen</span>
+  </div>
+</div>
+
+<div id="matrix-overlay"><span class="close" id="matrix-close">[ESC] exit matrix</span><canvas id="matrix-canvas"></canvas></div>
+
+<script>
+const lastlogin = document.getElementById('lastlogin');
+lastlogin.textContent = new Date().toString().replace(/GMT.*/, '').trim();
+
+const PROMPT_HTML = '<span class="prompt-user">somilkathuria@Cyber</span><span class="sep">:~$</span>';
+
+const sections = {
+  whoami: `
+    <div class="entry">
+      <div class="kv"><span class="k">Name:</span><span class="v">Somil Kathuria</span></div>
+      <div class="kv"><span class="k">Email:</span><a href="mailto:somil.corp@gmail.com">somil.corp@gmail.com</a></div>
+      <div class="kv"><span class="k">Phone:</span><span class="v">+91 7701977561</span></div>
+      <div class="kv"><span class="k">Location:</span><span class="v">Outram Lines, New Delhi</span></div>
+      <div class="kv"><span class="k">Focus:</span><span class="v">Cybersecurity | IAM | Security Operations | Privacy Engineering</span></div>
+    </div>`,
+  experience: `
+    <div class="entry">
+      <p class="line"><span class="entry-role">IT Security and Automation Intern</span> <span class="entry-at">@</span> <span class="entry-company">Skretting Aquaculture (Nutreco)</span></p>
+      <div class="entry-sub">2025-07 – 2025-10</div>
+      <ul class="bullets">
+        <li>Administered access control policies for organizational data systems, ensuring role-based access and structured permission management across SharePoint and Microsoft 365 environments.</li>
+        <li>Developed automated security and business workflows using Power Automate, reducing manual access request processing and improving audit trail visibility.</li>
+        <li>Managed SharePoint data governance processes, ensuring data integrity, access accuracy, and compliance with internal data handling standards.</li>
+      </ul>
+    </div>`,
+  education: `
+    <div class="entry">
+      <div class="kv"><span class="k">Degree:</span><span class="v">Bachelor of Technology – Computer Science &amp; Engineering</span></div>
+      <div class="kv"><span class="k">Institution:</span><span class="v">Dronacharya Group of Institutions, Greater Noida</span></div>
+      <div class="kv"><span class="k">Timeline:</span><span class="v">2022-11 – 2026-06</span></div>
+      <div class="kv"><span class="k">Grade:</span><span class="v">CGPA: 7.12</span></div>
+    </div>`,
+  skills: `
+    <div class="entry">
+      <div class="skill-row"><span class="skill-label">[Security &amp; Concepts]</span><span class="skill-val">IAM, Zero Trust, DLP, Access Control, Authentication &amp; Authorization, Cryptography, Incident Triage, Log Analysis, Threat Detection, MITRE ATT&amp;CK (Fundamentals)</span></div>
+      <div class="skill-row"><span class="skill-label">[Security Tools]</span><span class="skill-val">Wireshark, Nmap, Metasploit, Python, PowerShell, Bash</span></div>
+      <div class="skill-row"><span class="skill-label">[Networking &amp; Protocols]</span><span class="skill-val">TCP/IP, DNS, HTTP/HTTPS, SSH, Subnetting Fundamentals</span></div>
+      <div class="skill-row"><span class="skill-label">[Platforms &amp; Systems]</span><span class="skill-val">Microsoft 365, Azure AD (Fundamentals), SharePoint, Active Directory (Fundamentals), Windows, Linux, Power Automate, Power Apps</span></div>
+      <div class="skill-row"><span class="skill-label">[Hands-on Practice]</span><span class="skill-val">TryHackMe – Cyber Security 101 Path (Wireshark/Nmap traffic analysis, SOC &amp; threat-detection fundamentals)</span></div>
+    </div>`,
+  projects: `
+    <div class="entry">
+      <div class="entry-title"><a href="https://privia.onrender.com/" target="_blank" rel="noopener">Privia – Privacy-Preserving Identity Verification Platform</a></div>
+      <ul class="bullets">
+        <li>Designed and built a privacy-preserving identity verification framework using cryptographic selective disclosure to minimize exposure of sensitive personal data in KYC-like workflows.</li>
+        <li>Implemented AES encryption and SHA-256 hashing to secure identity claims, ensuring data integrity and confidentiality without transmitting raw personal information.</li>
+        <li>Architected a Zero Knowledge-inspired model for claim validation, allowing verifiers to confirm identity attributes without accessing underlying sensitive data.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="entry-title">Leave Approval Workflow Automation</div>
+      <div class="entry-sub">Microsoft Power Platform · Power Automate, Power Apps, SharePoint</div>
+      <ul class="bullets">
+        <li>Built automated approval system with role-based routing, audit-logging, and structured permission workflows in SharePoint, Power Apps, and Power Automate.</li>
+      </ul>
+    </div>`,
+  certifications: `
+    <div class="entry">
+      <div class="cert"><span class="cert-check">✓</span> <span class="cert-name">Cisco Cybersecurity Essentials</span><div class="cert-issuer">Issuer: Cisco Networking Academy</div></div>
+      <div class="cert"><span class="cert-check">✓</span> <span class="cert-name">Cisco Networking Basics</span><div class="cert-issuer">Issuer: Cisco Networking Academy</div></div>
+      <div class="cert"><span class="cert-check">✓</span> <span class="cert-name">ISC2 Certified in Cybersecurity (CC) – Pursuing</span></div>
+    </div>`,
+  publications: `
+    <div class="entry">
+      <div class="pub-title">Privia: A Privacy-Preserving Cryptographic Identity Verification Framework</div>
+      <div class="pub-date">(March 2026)</div>
+      <div class="pub-venue">In: SSRN (Elsevier) / ICICC 2026</div>
+      <p class="line pub-abstract">Verifying users on the internet is very important for all digital platforms. Traditional methods used for identity verification include phone numbers, government IDs, and biometrics — all of which carry privacy and security risks due to centralized storage of a user's data. Privia is a privacy-preserving, cryptography-based identity verification framework that allows users to verify their identity without disclosing any personal information. In the Privia system, identity verification happens at the user level, and only non-reversible cryptographic verifiable claims about a user's identity are sent to the system for verification. Evaluation of Privia shows that it reduces a user's exposure of personal information, increases the speed at which users can be verified, improves compliance with the regulatory environment, and is secure, scalable, and resilient against most common attacks — making it a viable substitute for conventional identity verification methods.</p>
+    </div>`,
+  socials: `
+    <div class="entry">
+      <div class="social-row"><span class="social-label">linkedin</span><span class="social-dash">–</span><a class="social-url" href="https://www.linkedin.com/in/somil-kathuria-58a05125b/" target="_blank" rel="noopener">https://www.linkedin.com/in/somil-kathuria-58a05125b/</a></div>
+      <div class="social-row"><span class="social-label">github</span><span class="social-dash">–</span><a class="social-url" href="https://github.com/somi17k" target="_blank" rel="noopener">https://github.com/somi17k</a></div>
+      <div class="social-row"><span class="social-label">other</span><span class="social-dash">–</span><a class="social-url" href="https://tryhackme.com/p/somi17k" target="_blank" rel="noopener">https://tryhackme.com/p/somi17k</a></div>
+    </div>`,
+  contact: `
+    <div class="entry">
+      <p class="line">Looking to hire, refer, or just say hi? Here's the fastest way to reach me:</p>
+      <div class="kv"><span class="k">Email:</span><a href="mailto:somil.corp@gmail.com">somil.corp@gmail.com</a></div>
+      <div class="kv"><span class="k">Phone:</span><span class="v">+91 7701977561</span></div>
+      <div class="kv"><span class="k">LinkedIn:</span><a href="https://www.linkedin.com/in/somil-kathuria-58a05125b/" target="_blank" rel="noopener">Connect / DM here</a></div>
+      <p class="line muted">Currently open to: Security Analyst, SOC, IT Support, and Linux/Cybersecurity fresher roles.</p>
+    </div>`,
+  resume: `
+    <div class="entry">
+      <p class="line">My full resume (PDF) is available on request — fastest way is to <a href="mailto:somil.corp@gmail.com?subject=Resume%20Request">email me</a> or message me on
+      <a href="https://www.linkedin.com/in/somil-kathuria-58a05125b/" target="_blank" rel="noopener">LinkedIn</a> and I'll send it right over.</p>
+    </div>`,
+  neofetch: `
+    <div class="neofetch-wrap">
+      <pre class="neofetch-art">          %%%%%%%%%%%%%%%
+     %%%%%%%%%%%%%%%%%%%%%%%%
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%*++++++**%%%%%%%%%%
+ %%%%%%%%%%%#*++**#*##**++++%%%%%%%
+ %%%%%%%%%#+*.*##+++++*.**+++%%%%%%
+%%%%%%%%##*****#*+++++**+++#%%%%%%%
+%%%%%%%###***#*##*#*##*+++++%%%%%%%
+%%%%%%###*++*###++*#######*+%%%%%%%
+%%%%%%%###*##*+##*+*##**++++%%%%%%%
+ %%%%%%###################*#%%%%%%%
+ %%%%%%%###################%%%%%%%%
+  %%%%%%%%%###############%%%%%%%%
+   %%%%%%%%%%###########%%%%%%%%%
+     %%%%%%%%%%%%%%%%%%%%%%%%%
+          %%%%%%%%%%%%%%%</pre>
+      <div class="neofetch-info">
+        <div class="nf-header">somil@outram-lines,-new-delhi</div>
+        <div class="nf-row"><span class="nf-k">OS:</span><span class="nf-v">Somil Kathuria v1.0 (LTS)</span></div>
+        <div class="nf-row"><span class="nf-k">Host:</span><span class="nf-v">somil@outram-lines,-new-delhi</span></div>
+        <div class="nf-row"><span class="nf-k">Kernel:</span><span class="nf-v">Bachelor of Technology – Computer Science &amp; Engineering</span></div>
+        <div class="nf-row"><span class="nf-k">Uptime:</span><span class="nf-v">1 roles held</span></div>
+        <div class="nf-row"><span class="nf-k">Packages:</span><span class="nf-v">29 installed via experience</span></div>
+        <div class="nf-row"><span class="nf-k">Shell:</span><span class="nf-v">brain-sh (v1.0-stable)</span></div>
+        <div class="nf-row"><span class="nf-k">CPU:</span><span class="nf-v">IAM, Zero Trust, DLP Multi-Core</span></div>
+        <div class="nf-row"><span class="nf-k">GPU:</span><span class="nf-v">UI/UX Rendering Engine</span></div>
+        <div class="nf-row"><span class="nf-k">Memory:</span><span class="nf-v">8GB Career RAM</span></div>
+        <div class="nf-row"><span class="nf-k">Battery:</span><span class="nf-v">85% (Charging)</span></div>
+      </div>
+    </div>`,
+  guide: `
+    <div class="entry">
+      <p class="line">Quick tour — here's a good order to explore this site in:</p>
+      <ul class="bullets">
+        <li><span class="cmd" data-cmd="whoami">whoami</span> — who I am, in one line</li>
+        <li><span class="cmd" data-cmd="experience">experience</span> — my internship at Skretting/Nutreco</li>
+        <li><span class="cmd" data-cmd="skills">skills</span> — tools &amp; concepts I work with</li>
+        <li><span class="cmd" data-cmd="projects">projects</span> — Privia and my automation build</li>
+        <li><span class="cmd" data-cmd="certifications">certifications</span> &amp; <span class="cmd" data-cmd="publications">publications</span> — credentials and my published research</li>
+        <li><span class="cmd" data-cmd="contact">contact</span> — how to reach me or request my resume</li>
+      </ul>
+      <p class="line muted">Or just type ls any time to see everything available.</p>
+    </div>`,
+};
+
+const helpKeys = ['help','welcome','guide','whoami','experience','education','skills','projects','certifications','publications','socials','contact','resume','ls','neofetch','cowsay','matrix','pwd','echo','clear'];
+
+const lsEntries = [
+  {name:'whoami.sh', desc:'about the current user'},
+  {name:'experience/', desc:'work history'},
+  {name:'education/', desc:'academic background'},
+  {name:'skills.txt', desc:'technical skills'},
+  {name:'projects/', desc:'things I have built'},
+  {name:'certifications.txt', desc:'licenses & certs'},
+  {name:'publications/', desc:'research & writing'},
+  {name:'contact.txt', desc:'how to reach me'},
+  {name:'resume.pdf', desc:'available on request'},
+];
+
+function printPrompt(cmdText){
+  const p = document.createElement('p');
+  p.className = 'line';
+  p.innerHTML = PROMPT_HTML + ' ' + (cmdText ? escapeHtml(cmdText) : '');
+  document.getElementById('output').appendChild(p);
+}
+function printHtml(html){
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  document.getElementById('output').appendChild(div);
+  div.querySelectorAll('.cmd').forEach(el=>{
+    el.addEventListener('click', ()=> runCommand(el.dataset.cmd));
+  });
+}
+function printText(text, cls){
+  const p = document.createElement('p');
+  p.className = 'line ' + (cls||'');
+  p.textContent = text;
+  document.getElementById('output').appendChild(p);
+}
+function printError(cmdName){
+  const p = document.createElement('p');
+  p.className = 'line';
+  p.innerHTML = `<span class="errlabel">bash:</span> <span class="err">${escapeHtml(cmdName)}: command not found. Type 'help' for available commands.</span>`;
+  document.getElementById('output').appendChild(p);
+}
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function runCommand(raw){
+  const cmd = raw.trim();
+  printPrompt(cmd);
+  const [base, ...rest] = cmd.split(' ');
+  const arg = rest.join(' ');
+  const lowerBase = (base||'').toLowerCase();
+
+  switch(lowerBase){
+    case '':
+      break;
+    case 'help':
+      printHtml(document.querySelector('.help-grid').outerHTML);
+      break;
+    case 'welcome':
+      printHtml('<pre class="ascii">  ____    ___   __  __   ___   _\n / ___|  / _ \\ |  \\/  | |_ _| | |\n \\___ \\ | | | || |\\/| |  | |  | |\n  ___) || |_| || |  | |  | |  | |___\n |____/  \\___/ |_|  |_| |___| |_____|</pre>');
+      break;
+    case 'guide': printHtml(sections.guide); break;
+    case 'whoami': printHtml(sections.whoami); break;
+    case 'experience': printHtml(sections.experience); break;
+    case 'education': printHtml(sections.education); break;
+    case 'skills': printHtml(sections.skills); break;
+    case 'projects': printHtml(sections.projects); break;
+    case 'certifications': printHtml(sections.certifications); break;
+    case 'publications': printHtml(sections.publications); break;
+    case 'socials': printHtml(sections.socials); break;
+    case 'contact': printHtml(sections.contact); break;
+    case 'resume': printHtml(sections.resume); break;
+    case 'neofetch': printHtml(sections.neofetch); break;
+    case 'ls': {
+      let html = '<div class="entry">';
+      lsEntries.forEach(e=>{
+        const isDir = e.name.endsWith('/');
+        html += `<div class="ls-row"><span class="ls-meta">${isDir?'drwxr-xr-x':'-rw-r--r--'}</span><span class="ls-type" style="min-width:120px;display:inline-block;">${e.name}</span><span class="ls-meta">${e.desc}</span></div>`;
+      });
+      html += '<p class="line muted" style="margin-top:8px;">tip: type the name without the extension/slash (e.g. "skills") to view it</p></div>';
+      printHtml(html);
+      break;
+    }
+    case 'pwd':
+      printText('/home/somilkathuria'); break;
+    case 'echo':
+      printText(arg || ''); break;
+    case 'sudo':
+      printText("Nice try. This user has no root access - only verified offers of employment.", 'muted'); break;
+    case 'cowsay': {
+      const msg = arg || "Mooooo! Hire this human!";
+      const top = ' ' + '-'.repeat(msg.length+2);
+      printHtml(`<pre class="line">${top} -\n< ${escapeHtml(msg)} >\n${top} -\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||</pre>`);
+      break;
+    }
+    case 'matrix':
+      openMatrix(); return;
+    case 'clear':
+      document.getElementById('output').innerHTML = '';
+      return;
+    default:
+      printError(base);
+  }
+  window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});
+}
+
+document.querySelectorAll('.cmd').forEach(el=>{
+  el.addEventListener('click', ()=> runCommand(el.dataset.cmd));
+});
+
+const input = document.getElementById('cmdline');
+const history = [];
+let histIndex = -1;
+
+input.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){
+    const val = input.value;
+    if(val.trim() !== ''){ history.push(val); histIndex = history.length; }
+    runCommand(val);
+    input.value = '';
+  } else if(e.key === 'ArrowUp'){
+    if(histIndex > 0){ histIndex--; input.value = history[histIndex]; }
+    e.preventDefault();
+  } else if(e.key === 'ArrowDown'){
+    if(histIndex < history.length-1){ histIndex++; input.value = history[histIndex]; }
+    else { histIndex = history.length; input.value=''; }
+    e.preventDefault();
+  } else if(e.key === 'Tab'){
+    e.preventDefault();
+    const partial = input.value.trim().toLowerCase();
+    if(partial){
+      const match = helpKeys.find(k=>k.startsWith(partial));
+      if(match) input.value = match;
+    }
+  } else if(e.ctrlKey && e.key.toLowerCase() === 'l'){
+    e.preventDefault();
+    document.getElementById('output').innerHTML = '';
+  }
+});
+
+document.addEventListener('click', (e)=>{
+  if(!document.getElementById('matrix-overlay').contains(e.target)) input.focus();
+});
+input.focus();
+
+// Matrix easter egg
+const overlay = document.getElementById('matrix-overlay');
+const canvas = document.getElementById('matrix-canvas');
+let matrixTimer;
+function openMatrix(){
+  overlay.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const chars = 'アカサタナハマヤラワ01アイウエオ';
+  const fontSize = 16;
+  const columns = Math.floor(canvas.width/fontSize);
+  const drops = new Array(columns).fill(1);
+  function draw(){
+    ctx.fillStyle = 'rgba(0,0,0,0.08)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#3fb950';
+    ctx.font = fontSize+'px monospace';
+    for(let i=0;i<drops.length;i++){
+      const text = chars[Math.floor(Math.random()*chars.length)];
+      ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+      if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  matrixTimer = setInterval(draw, 35);
+}
+function closeMatrix(){
+  overlay.style.display = 'none';
+  clearInterval(matrixTimer);
+}
+document.getElementById('matrix-close').addEventListener('click', closeMatrix);
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMatrix(); });
+</script>
+</body>
+</html>
